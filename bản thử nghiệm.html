@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Khano Flower</title>
+  <link rel="icon" type="image/png" href="images/logo-ban-hoa.jpg" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+      background: #fff;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    /* ========= wrapper (fix bố cục) ========= */
+    .wrapper {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+
+    /* --- header/topline --- */
+    #top-line {
+      background: #f9f9f9;
+      border-bottom: 1px solid #eee;
+      padding: 8px 0;
+      font-size: 14px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    #header {
+      background: #fff;
+      padding: 15px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    #header .wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .logo img {
+      height: 100px;
+      display: block;
+    }
+
+    .search {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .search input {
+      padding: 6px 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 220px;
+    }
+
+    .btnsearch {
+      padding: 7px 14px;
+      background: #d45d79;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      font-size: 14px;
+      transition: background 0.3s;
+    }
+    .btnsearch:hover { background: #c14d69; }
+
+    .support {
+      font-size: 13px;
+      text-decoration: none;
+      margin-left: 10px;
+      color: #d45d79;
+      font-weight: bold;
+    }
+    .support span { display: block; color: #666; font-weight: normal; }
+
+    /* --- banner --- */
+    #banner {
+      background: #fbf8f6;
+      text-align: center;
+      padding: 50px 20px;
+    }
+    #banner h1 { margin-bottom: 10px; font-size: 32px; color: #d45d79; }
+    #banner p { color: #555; font-size: 18px; }
+
+    /* --- products general --- */
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      width: 90%;
+      max-width: 1200px;
+      margin: 20px auto;
+    }
+
+    .product {
+      background: #fff;
+      flex: 1 1 calc(25% - 20px);
+      max-width: 280px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      text-align: center;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .product img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      border-bottom: 2px solid #fafafa;
+      transition: transform .35s ease;
+      display: block;
+    }
+    .product:hover img { transform: scale(1.05); }
+    .product:hover { transform: translateY(-8px); box-shadow: 0 10px 18px rgba(0,0,0,0.15); }
+
+    .product h3 { font-size: 1.1rem; margin: 12px 0 6px; color: #333; }
+    .product .price { color: #d45d79; font-weight: bold; margin-bottom: 12px; }
+
+    /* --- content section --- */
+    #content {
+      background: #fbf8f6;
+      padding: 40px 0 80px;
+    }
+    h2.section {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 24px;
+      color: #d45d79;
+    }
+
+    /* --- footer --- */
+    footer {
+      text-align: center;
+      padding: 25px;
+      background: #fefaf8;
+      color: #555;
+      font-size: 0.95rem;
+      border-top: 1px solid #eee;
+      margin-top: 30px;
+    }
+
+    /* --- facebook bubble (không che ảnh) --- */
+    #facebook-bubble {
+      position: fixed;
+      bottom: 22px;
+      right: 22px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #1877f2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.15);
+      z-index: 1200;
+      cursor: pointer;
+      transition: transform .18s ease;
+    }
+    #facebook-bubble img { width: 30px; height: 30px; filter: brightness(0) invert(1); display:block; }
+
+    /* responsive */
+    @media (max-width: 992px) {
+      .product { flex: 1 1 calc(33.33% - 20px); }
+    }
+    @media (max-width: 768px) {
+      .product { flex: 1 1 calc(50% - 20px); }
+      #banner h1 { font-size: 24px; }
+    }
+    @media (max-width: 576px) {
+      .product { flex: 1 1 100%; }
+      .search input { width: 100%; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- top line -->
+  <div id="top-line">Nơi giao hoa: Ha Noi city</div>
+
+  <!-- header -->
+  <div id="header">
+    <div class="wrapper">
+      <div class="logo">
+        <!-- đảm bảo file images/logo-ban-hoa.jpg tồn tại -->
+        <img src="images/logo-ban-hoa.jpg" alt="KHANO logo" />
+      </div>
+
+      <div class="search">
+        <input type="text" placeholder="Tìm sản phẩm" />
+        <a href="javascript:void(0);" class="btnsearch">Tìm kiếm</a>
+        <a href="tel:0917880001" class="support">Hotline-Zalo<span>0917 880 001</span></a>
+        <a href="tel:0962836055" class="support">Hotline-Zalo<span>0962 836 055</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- banner -->
+  <div id="banner">
+    <div class="wrapper">
+      <h1>Shop hoa xinh Khano xin chào quý khách</h1>
+      <p>Đặt hoa online, giao nhanh tại Hà Nội</p>
+    </div>
+  </div>
+
+  <!-- sản phẩm (dãy chính) -->
+  <div class="products">
+    <div class="product">
+      <img src="images/hoa-mau-do.jpg" alt="Hoa đẹp" />
+      <h3>Bó hoa đỏ</h3>
+      <div class="price">Mua ngay</div>
+    </div>
+
+    <div class="product">
+      <img src="images/hoa-hong-do.jpg" alt="Hoa đẹp" />
+      <h3>Giỏ hoa hồng đỏ</h3>
+      <div class="price">Mua ngay</div>
+    </div>
+
+    <div class="product">
+      <img src="images/hoa-1.jpg" alt="Hoa đẹp" />
+      <h3>Hoa tặng theo yêu cầu</h3>
+      <div class="price">Mua ngay</div>
+    </div>
+
+    <div class="product">
+      <img src="images/hoa-2.jpg" alt="Hoa đẹp" />
+      <h3>Hoa tặng theo yêu cầu</h3>
+      <div class="price">Mua ngay</div>
+    </div>
+
+    <div class="product">
+      <img src="images/hoa-3.jpg" alt="Hoa đẹp" />
+      <h3>Hoa tặng theo yêu cầu</h3>
+      <div class="price">Mua ngay</div>
+    </div>
+
+    <div class="product">
+      <img src="images/hoa-4.jpg" alt="Hoa đẹp" />
+      <h3>Hoa tặng theo yêu cầu</h3>
+      <div class="price">Mua ngay</div>
+    </div>
+
+    <div class="product">
+      <img src="images/hoa-5.jpg" alt="Hoa đẹp" />
+      <h3>Hoa tặng theo yêu cầu</h3>
+      <div class="price">Mua ngay</div>
+    </div>
+
+    <div class="product">
+      <img src="images/hoa-ki-yeu.jpg" alt="Hoa đẹp" />
+      <h3>Giỏ hoa kỉ yếu</h3>
+      <div class="price">Mua ngay</div>
+    </div>
+  </div>
+
+  <!-- content nổi bật -->
+  <div id="content">
+    <div class="wrapper">
+      <h2 class="section">Sản phẩm nổi bật</h2>
+      <div class="products">
+        <div class="product">
+          <img src="images/hoa-sinh-nhat-1.jpg" alt="Hoa đẹp" />
+          <h3>Giỏ hoa sinh nhật</h3>
+          <div class="price">Giá: 600.000đ</div>
+        </div>
+
+        <div class="product">
+          <img src="images/hoa-hong-trang.jpg" alt="Hoa đẹp" />
+          <h3>Giỏ hoa hồng trắng</h3>
+          <div class="price">Giá: 600.000đ</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- footer -->
+  <footer>
+    © 2025 KHANO Flowers | Hotline-Zalo: 0917880001 - 0962836055
+  </footer>
+
+  <!-- Facebook bubble: mở thẳng profile, không che ảnh (z-index cao, góc dưới phải) -->
+  <div id="facebook-bubble" title="Liên hệ qua Facebook" aria-hidden="false">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" />
+  </div>
+
+  <script>
+    // click mở profile FB
+    document.getElementById('facebook-bubble').addEventListener('click', function () {
+      window.open('https://www.facebook.com/nhat.khang.478894', '_blank', 'noopener');
+    });
+
+    // ensure images exist: nếu ảnh logo mất file sẽ không làm vỡ layout
+    // (nếu bạn muốn, có thể thêm fallback src ở đây)
+  </script>
+</body>
+</html>
+
